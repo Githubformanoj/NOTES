@@ -32,6 +32,38 @@ persistent disk - Block storage -  always need a host machine to access of its d
 GCP NETWORKING SERVICES --------
 
 
+VPC - vpc is a virtual private cloud inside the public cloud its a virtual netwoek for our resources where we can specify ipadd range and subnets gateways and firewall rules.
+GCP LOAD BALENCER - a load-balencer distribute user traffic across multiple instances of your application acoriding to the load.
+There are 6 types of load balencers in google cloud - 
+External - http load balencing, ssl load balencing, TCP proxy load balencing, TCP/UDP network load balencing.
+Internal - internal TCP/UDP load balencing, internal http load balencing.
+
+GCP Database -----
+
+
+Relational database service -- 
+Cloud SQL: Cloud SQL is a traditional relational database service that supports MySQL, PostgreSQL, and SQL Server. It is designed for vertical scaling, which means you can increase the resources (CPU and RAM) of a single
+instance, but it has limitations in terms of horizontal scalability. Scaling up can improve performance, but it has an upper limit.
+
+Cloud Spanner: Cloud Spanner is a globally distributed, horizontally scalable database service. It is designed for high availability and can automatically replicate data across multiple regions. Cloud Spanner provides
+both strong consistency and horizontal scaling, making it suitable for globally distributed applications with high transactional requirements.
+
+Key-value database services -------
+Cloud Bigtable - Cloud Bigtable is a fully managed, scalable NoSQL database. In a key-value database, data is stored as simple key-value pairs.Each key is associated with a single value, which can be a string,
+binary data, or a more complex data structure like JSON. Key-value databases are schema-less, meaning that there is no predefined structure for the data.
+often used for caching, session management, and storing simple data structures.designed for horizontal scalability
+
+Document database services -----
+Document databases store data in a semi-structured format, typically using documents.Document databases provide richer querying capabilities
+
+
+GOOGLE BIG TABLE --------
+
+
+
+
+
+
 
 
 
