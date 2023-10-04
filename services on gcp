@@ -1,0 +1,41 @@
+GCP service domains -------
+
+COMPUTE
+STORAGE & DATABASE
+NETWORKING
+BIG DATA
+DEVELOPER TOOLS
+INDENTITY & SECURITY
+INTERNET OF THINGS
+CLOUD AI
+MANAGEMENT TOOLS
+DATA TRANSFER
+
+
+
+GCP COMPUTE SERVICES ------
+compute engine - IAAS
+app engine - PAAS
+container engine - GOOGLE KUBERNETES SERVICE
+container rajistry - WHERE YOU WILL PUSH YOUR CONTAINERS
+cloud function - SERVERLESS OFFERING
+
+
+GCP STORAGE SERVICES -------
+cloud storage - unified storage service, its lets you to store data in blocks like images, videos, and structered and unstructered. and its stored in the form of object.
+cloud bigtable -  No SQL databases  - we use it for processing the data with low latency.
+cloud datastore - No SQL databases - we use it for processing the data in herarical.
+cloud SQL - SQL dabase, process Structer data.
+persistent disk - Block storage -  always need a host machine to access of its data. we can also attach and detach with our instance.
+
+
+GCP NETWORKING SERVICES --------
+
+
+
+
+
+
+BIG QUERY -  It is a serverless database and highly scalable. it can analyge patabytes of data in seconds.
+
+
