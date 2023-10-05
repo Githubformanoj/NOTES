@@ -65,17 +65,7 @@ Bigtable is a sparse, distributed, multilevel map which indexed by a combination
 (row:string, column:string,Timestamp:int64) → string
 
 
-
-
-
-
-
-
-
-
-
-
-
-BIG QUERY -  It is a serverless database and highly scalable. it can analyge patabytes of data in seconds.
+BIG QUERY ------  It is a serverless database and highly scalable. it can analyge patabytes of data in seconds.BigQuery is serverless, which means you don't need to provision or manage any infrastructure. 
+BigQuery uses standard SQL for querying data, BigQuery is known for its high-speed query processing.
 
 
