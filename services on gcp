@@ -58,6 +58,14 @@ Document databases store data in a semi-structured format, typically using docum
 
 
 GOOGLE BIG TABLE --------
+It is a key-value database. used for store large amount of data with low latency. you can increase the number of nodes as per the requirement.
+Bigtable is a schema-less NoSQL database, which means you can store and retrieve data without a fixed schema.
+Bigtable is a sparse, distributed, multilevel map which indexed by a combination of row ,column and timestamp values.
+
+(row:string, column:string,Timestamp:int64) → string
+
+
+
 
 
 
