@@ -69,3 +69,12 @@ BIG QUERY ------  It is a serverless database and highly scalable. it can analyg
 BigQuery uses standard SQL for querying data, BigQuery is known for its high-speed query processing.
 
 
+
+GOOGLE kUBERNETES ENGINE -------
+GKE provides a managed environment for deploying, managing and scaling containerize applications.
+process - cloud code -> code repository -> code build -> container rajistery -> -> GKE.
+
+
+GCP TERRAFORM - 
+
+
