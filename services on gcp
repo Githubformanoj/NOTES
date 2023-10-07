@@ -66,7 +66,7 @@ Bigtable is a sparse, distributed, multilevel map which indexed by a combination
 
 
 BIG QUERY ------  It is a serverless database and highly scalable. it can analyge patabytes of data in seconds.BigQuery is serverless, which means you don't need to provision or manage any infrastructure. 
-BigQuery uses standard SQL for querying data, BigQuery is known for its high-speed query processing.
+BigQuery uses standard SQL for querying data, BigQuery is known for its high-speed query processing.BigQuery is a data warehouse optimized for running complex SQL queries on large datasets
 
 
 
@@ -75,6 +75,18 @@ GKE provides a managed environment for deploying, managing and scaling container
 process - cloud code -> code repository -> code build -> container rajistery -> -> GKE.
 
 
-GCP TERRAFORM - 
+Google file store ----
+it is a file storage service procided by google which allows us to create a NFS file server instance and access it or share the filesystem across multiple compute engines.
+
+Cloud Armor -------
+Google cloud armor helps you to protect your google cloud deployments, from multiple types of threts. basically it is a firewall service provided by google.
+
+
+Firebase - cloud based NOSQL database where we can store sink and query our data.
+Realtime Database stores data as one big JSON tree, while Cloud Firestore stores it as a collection of documents. 
+This means that in Realtime Database, all the data is stored together in a single object, while in Firestore the data is split into smaller chunks called documents. 
+
+
+
 
 
