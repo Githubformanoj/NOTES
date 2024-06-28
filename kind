@@ -1,0 +1,9 @@
+create a user and authenticate it against the kubernetes api server to it can also logged in into the cluster and can do the task as per the access will be given to this user.
+
+In this example we are using kind as a kubernetes cluster-------------
+
+just logged in inside the control plane node and look for the path where certificate and keys are stored. - /etc/kubernetes/pki/ca.crt, ca.key
+
+command for generating the key - openssl genrsa -out manoj.key 2048
+
+command for create a csr - 
