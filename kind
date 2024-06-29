@@ -6,4 +6,24 @@ just logged in inside the control plane node and look for the path where certifi
 
 command for generating the key - openssl genrsa -out manoj.key 2048
 
-command for create a csr - 
+command for create a csr -  openssl req -new -key manoj.key  -out manoj.csr -subj "/CN=manoj/O=developers"
+
+command for generating a certificate by using the csr and kuberntes key&certificates. - openssl x509 -req -in manoj.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out manoj.crt -days 20
+
+copy these three files to the host machine where are cluster is running. and create a user in the kubeconfig file using these key and crt.
+
+Now create a user using these keys inside the kubeconfig file.---- k config set-credentials manoj --client-certificate manoj.crt --client-key manoj.key
+
+Now the user has been added and we can set the context also for our user using the command -  k config set-context manoj-kindkind --user manoj --cluster kind-kind
+
+command for changing the current contex - kubectx manoj-kindkind. but sill we won't be able to see the resources .
+
+Now we have to create a role and rolebinding for giving permission to this user for creating deleting and watching the resources in kubernetes cluser 
+
+Now will change the contex to manoj then we will be able to see the resources.
+-------------
+
+There is a another way by creating a certificate signing request resource and approve that using kubectl command.
+
+
+
