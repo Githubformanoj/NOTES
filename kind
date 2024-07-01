@@ -24,6 +24,17 @@ Now will change the contex to manoj then we will be able to see the resources.
 -------------
 
 There is a another way by creating a certificate signing request resource and approve that using kubectl command.
+--------------------------------------------------------------------
+
+Kubectl create command -----------------------------
+
+kubectl create secret generic testsecret --from-literal password==12345 --dry-run -oyaml-------- which means simply output the command in yaml format. ---The --from-literal parameter that we provided is meant to be used to directly specify the Secret data in the command in the plain text
+
+kubectl create secret --help or kubectl create --help-------------------for other options.
+
+command for checking on which perticular node the pod has scheduled. -  k get pods --all-namespaces -ojsonpath='{.items[?(@.spec.nodeName=="kind-control-plane")].metadata.name}'
+
+
 
 
 
