@@ -43,4 +43,81 @@ Command for forwading the request from the vm interface to the docker containers
  sudo apt-get install iptables-persistent
  sudo netfilter-persistent save
 
+--------------------------------------------------------------
+
+node selector, affinity, traints---------------------------apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  nodeSelector:
+    disktype: ssd
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+above is the example for scheduling a pod in a perticular node-------for this first we have to labeled our node using the command -  kubectl label node kind-worker disktype=ssd
+
+
+node affinity ------ it can be used for which are all the pods where these pods can be scheduled on.
+node selector--------it can be used for in which perticular node you want to schedule the pod.
+
+Node Selector
+Definition: Simple mechanism to control pod placement.
+Key-Value Pair: Specifies nodes based on labels.
+
+nodeSelector:
+  disktype: ssd
+-----------------
+
+Node Affinity
+Definition: Advanced way to control pod placement.
+Types:
+RequiredDuringSchedulingIgnoredDuringExecution: Mandatory criteria for pod placement.
+PreferredDuringSchedulingIgnoredDuringExecution: Preferred but not mandatory criteria.
+Expressions: Uses complex rules for node selection.
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: disktype
+          operator: In
+          values:
+          - ssd
+
+---------------------
+
+Taints and Tolerations
+Taints:
+
+Definition: Applied to nodes to repel certain pods.
+Effects: NoSchedule, PreferNoSchedule, NoExecute.
+
+kubectl taint nodes node1 key=value:NoSchedule
+
+-----------------------
+Tolerations:
+
+Definition: Applied to pods to allow them to run on tainted nodes.
+
+tolerations:
+- key: "key"
+  operator: "Equal"
+  value: "value"
+  effect: "NoSchedule"
+-----------------------
+
+
+
+
+
+
+
+
+
+
+
 
