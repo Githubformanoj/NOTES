@@ -111,6 +111,107 @@ tolerations:
 -----------------------
 
 
+Kubernetes Init Containers
+Definition:
+
+Special containers that run and complete before the main application containers start.
+Purpose:
+
+Set Up Environment: Prepare the environment for the main containers.
+Dependencies: Handle initialization that main containers depend on.
+Sequential Tasks: Perform tasks that must complete before other tasks.
+Differences from Regular Containers:
+
+Lifecycle: Init containers must complete before application containers start.
+Multiple Init Containers: If multiple init containers are specified, they run sequentially.
+Common Uses:
+
+Configuration Setup: Download configuration files.
+Data Preparation: Set up databases or services.
+Dependency Check: Ensure dependencies are met before main application starts.
+Example:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  initContainers:
+  - name: init-myservice
+    image: busybox
+    command: ['sh', '-c', 'until nslookup myservice; do echo waiting for myservice; sleep 2; done;']
+  containers:
+  - name: myapp-container
+    image: myapp:latest
+    ports:
+    - containerPort: 80
+
+In this example, the init-myservice container waits until the myservice is available before starting the myapp-container
+
+-------------------------------
+
+Kubernetes secrets -------------
+using docker-registry secret for storing the credentials and pulling the image from private repo-------
+
+command for creating secret----- kubectl create secret docker-registry pullsecret --docker-username manojtiwari000 --docker-password 'Arahan#@!1307' --docker-email bholebaba9456@gmail.com --dry-run -oyaml > secret.yaml
+-----------------
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJtYW5vanRpd2FyaTAwMCIsInBhc3N3b3JkIjoiQXJhaGFuI0AhMTMwNyIsImVtYWlsIjoiYmhvbGViYWJhOTQ1NkBnbWFpbC5jb20iLCJhdXRoIjoiYldGdWIycDBhWGRoY21rd01EQTZRWEpoYUdGdUkwQWhNVE13Tnc9PSJ9fX0=
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: pullsecret
+type: kubernetes.io/dockerconfigjson
+--------------
+
+When we create this secret then a config.json file will be generated which containes docker authentication details. a token can be also find inside secret.yaml. by decoding that in base64 you will fins the details.
+
+below is the pod----
+apiVersion: v1
+kind: Pod
+metadata:
+  name: reactapp
+spec:
+  imagePullSecrets:
+    - name: pullsecret
+  containers:
+    - name: reactapp
+      image: manojtiwari000/reactapp-private:v1
+      ports:
+        - containerPort: 3000
+
+-----------------------------------
+
+
+We can also use the config.json file in case we dont have the username and password below i am using it -------below is the command for the same.
+
+command for create secret ----- kubectl create secret generic pullsecret1 --from-file=.dockerconfigjson=/home/tom/.docker/config.json/ -type kubernetes.io/dockerconfigjson --dry-run -oyaml> secretone.yam -----
+here the type is not opaque but the same which we have seen above using username and paasword.
+------------------
+Note ---
+We can also specify imagepull secrets in service accounts also. when we create a pod then it uses a default service account inside where we can inject imagepull secret.
+in this case first will create a secret then inject it inside the service account not in the pod thats the benifit.
+Once we have used this secret inside the serviceaccount then this secret will applied for all the pods which are having that namespace where this service account is there. which means we dont have to provide
+secret seperatly every pod in the same namespace will be using the secret.
+
+--------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
