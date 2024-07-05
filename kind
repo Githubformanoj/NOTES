@@ -36,5 +36,11 @@ command for checking on which perticular node the pod has scheduled. -  k get po
 
 
 
+Command for forwading the request from the vm interface to the docker containers ip where kind is running------------------------------------
+
+ sudo iptables -A PREROUTING -t nat -i enp0s3 -p tcp --dport 30007 -j DNAT --to-destination 172.18.0.2:30007
+ sudo iptables -A FORWARD -p tcp -d 172.18.0.2 --dport 30007 -j ACCEPT
+ sudo apt-get install iptables-persistent
+ sudo netfilter-persistent save
 
 
