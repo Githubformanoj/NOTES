@@ -196,15 +196,132 @@ Once we have used this secret inside the serviceaccount then this secret will ap
 secret seperatly every pod in the same namespace will be using the secret.
 
 --------------------------------------------------
+Kubernetes Volumes ------------------
+
+Two types of volumes in kubernetes-------
+
+Ephemeral Volume---------------------
+Ephemeral Volumes in Kubernetes are temporary storage solutions that exist only for the lifetime of a pod. They are suitable for use cases where data does not need to persist beyond the life of a pod. Examples include:
+
+emptyDir: A volume that is created when a pod is assigned to a node and exists as long as that pod is running on that node.
+configMap: Used to inject configuration data into pods.
+secret: Used to manage sensitive information, such as passwords and tokens.
+Key Characteristics:
+
+Data is lost when the pod is deleted.
+Typically used for caching, temporary storage, or intermediate processing data.
+
+Persistent Volume---------------------
+Persistent Volumes (PVs) are storage resources in Kubernetes that exist independently of pods. PVs are used for storing data that needs to persist beyond the life of individual pods, such as databases or shared storage.
+
+Key Components:
+
+PersistentVolume (PV): The actual storage resource provisioned in the cluster.
+PersistentVolumeClaim (PVC): A request for storage by a user. PVCs are used by pods to access PVs.
+Key Characteristics:
+
+Data persists beyond the lifecycle of a pod.
+Suitable for databases, file storage, and any application requiring durable storage.
+Managed by the Kubernetes control plane, providing dynamic provisioning and lifecycle management.
+
+-----------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ephemeral-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'sleep 3600']
+    volumeMounts:
+    - mountPath: /tmp
+      name: ephemeral-volume
+  volumes:
+  - name: ephemeral-volume
+    emptyDir: {}
+--------------------
+
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-example
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data
+------------------------
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-example
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+----------------------
+Pod is using pvc-----------
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: persistent-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ['sh', '-c', 'sleep 3600']
+    volumeMounts:
+    - mountPath: /mnt/data
+      name: persistent-storage
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: pvc-example
+-------------------------------------------------------------------------------
+
+Custom Resource Definitions (CRDs) in Kubernetes
+Custom Resource Definitions (CRDs) allow you to extend the Kubernetes API with custom resources. This feature lets you define your own resource types that behave similarly to built-in Kubernetes resources like Pods,
+Deployments, or Services.
+
+If you want to use the custom resource, you have to registerd the custom resource using crds. once it is registerd another endpoint to be created in api server. Then api server will entertain the request.
 
 
 
-
-
-
-
-
-
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: myresources.example.com
+spec:
+  group: example.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                foo:
+                  type: string
+  scope: Namespaced
+  names:
+    plural: myresources
+    singular: myresource
+    kind: MyResource
+    shortNames:
+    - mr
+------------------------------------------------------------------------------
 
 
 
