@@ -323,6 +323,15 @@ spec:
     - mr
 ------------------------------------------------------------------------------
 
+Configmaps - Configmaps are kubernetes objects that can be used for store some configuration, so that our application can use it.
+
+How the Configmap used in a pod?--------
+1 ) env variables - inside the container we can define environment variable to use the environment from the config maps.
+2 ) By mounting the config maps inside this application as a volume. We can create this volume to be a config map and can specify it inside the container to a specific path.
+
+Note - When someone changed the configmap value then that value is also changed in volume. But in case of env variables this is not happens.
+
+
 
 
 
