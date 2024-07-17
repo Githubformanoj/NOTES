@@ -331,7 +331,42 @@ How the Configmap used in a pod?--------
 
 Note - When someone changed the configmap value then that value is also changed in volume. But in case of env variables this is not happens.
 
+---------------------------------
 
+HELM----------------
+Helm is a package manager for Kubernetes that allows you to define, install, and upgrade complex Kubernetes applications. It simplifies deployment, management, and configuration by bundling multiple Kubernetes
+resources into a single package called a "chart".
+
+
+Helm in Kubernetes: Detailed Explanation
+Overview
+Helm is a package manager for Kubernetes that allows you to define, install, and upgrade complex Kubernetes applications. It simplifies deployment, management, and configuration by bundling multiple Kubernetes resources into a single package called a "chart".
+
+Helm Structure
+Chart Directory Structure
+Chart.yaml: Contains metadata about the chart such as name, version, and description.
+values.yaml: The default configuration values for the chart.
+templates/: Directory for Kubernetes manifest templates (e.g., Deployment, Service).
+charts/: Directory for dependent charts.
+templates/_helpers.tpl: Template helpers that can be shared across chart templates.
+LICENSE: License for the chart.
+README.md: Information about the chart.
+Chart.yaml
+
+Commands
+Creating a Chart: helm create mychart
+Packaging a Chart: helm package mychart
+Installing a Chart: helm install myrelease mychart-0.1.0.tgz
+Upgrading a Release: helm upgrade myrelease mychart-0.1.1.tgz
+Listing Releases: helm list
+Uninstalling a Release: helm uninstall myrelease
+Key Concepts
+Charts: Packages of pre-configured Kubernetes resources.
+Releases: Instances of charts running in a Kubernetes cluster.
+Repositories: Locations where charts can be stored and shared.
+Values: Configuration settings that customize the behavior of a chart.
+
+---------------------------------------------
 
 
 
