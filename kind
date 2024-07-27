@@ -414,6 +414,19 @@ Liveness Probe: Checks the /healthz endpoint every 3 seconds. If it fails, the c
 Readiness Probe: Checks the /ready endpoint every 3 seconds. If it fails, the pod is marked as not ready, and it is removed from the service endpoints.
 Startup Probe: Checks the /start endpoint every 3 seconds initially. Once the startup probe succeeds, the liveness and readiness probes are enabled.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ingress---------
+
+what is ingress ClassName and why it is used?
+Ans - The ingress ClassName which we provide inside the ingress resource tells the ingress controller that this ingress resource you have to watch for.
+
+There are three things which we need to remembered with respect to ingress. --------
+1) ingress resource
+2) ingress controller
+3) load balancer
+
+This ingress controller will watch the ingress resource and creats load balancer.
 
 
 
