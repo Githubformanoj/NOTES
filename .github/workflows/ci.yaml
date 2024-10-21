@@ -27,4 +27,4 @@ jobs:
 
       - name: Run Hello World script
         run: |
-          python hello_world.py  # Run the Hello World program
+          python app.py  # Run the Hello World program
