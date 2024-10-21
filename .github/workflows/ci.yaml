@@ -1,1 +1,30 @@
 
+name: Hello World CI
+
+# Trigger the workflow on every push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Checks out your repository code
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Set Python version, e.g., 3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  # Upgrade pip
+          # If you have any dependencies, install them here
+
+      - name: Run Hello World script
+        run: |
+          python hello_world.py  # Run the Hello World program
